@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LayerPro Web</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <header class="app-header">
+        <h1>LayerPro</h1>
+        <p>Background + unlimited keyed sequence layers</p>
+      </header>
+
+      <section class="panel panel-assets">
+        <h2>Assets</h2>
+        <label class="field">
+          <span>Background image</span>
+          <input id="backgroundInput" type="file" accept="image/*" />
+        </label>
+        <label class="field">
+          <span>Add overlay folder</span>
+          <input id="overlayFolderInput" type="file" accept="image/*" webkitdirectory directory multiple />
+        </label>
+        <p id="status" class="status">Ready.</p>
+      </section>
+
+      <section class="panel panel-layers">
+        <h2>Layers</h2>
+        <div id="layerList" class="layer-list"></div>
+      </section>
+
+      <section class="panel panel-preview">
+        <h2>Preview</h2>
+        <div class="canvas-scroll">
+          <canvas id="previewCanvas" width="960" height="540"></canvas>
+        </div>
+        <div class="playback-row">
+          <button id="playPauseBtn" type="button">Play</button>
+          <label>
+            Scene Scale
+            <input id="sceneScaleInput" type="number" min="0.05" max="5" step="0.05" value="1" />
+          </label>
+          <label>
+            FPS
+            <input id="fpsInput" type="number" min="1" max="60" step="1" value="24" />
+          </label>
+          <label class="grow">
+            Frame
+            <input id="frameSlider" type="range" min="0" max="0" value="0" />
+          </label>
+          <span id="frameLabel" class="mono">0 / 0</span>
+        </div>
+      </section>
+
+      <section class="panel panel-inspector">
+        <h2>Inspector</h2>
+        <div id="inspectorEmpty">Select a layer to edit x, y, scale, and keying.</div>
+        <div id="inspectorControls" class="inspector-controls hidden">
+          <h3 id="selectedLayerName"></h3>
+          <label class="field-inline">
+            <span>X</span>
+            <input id="xInput" type="number" step="1" value="0" />
+          </label>
+          <label class="field-inline">
+            <span>Y</span>
+            <input id="yInput" type="number" step="1" value="0" />
+          </label>
+          <label class="field-inline">
+            <span>Scale</span>
+            <input id="scaleInput" type="number" min="0.01" step="0.01" value="1" />
+          </label>
+          <label class="field-inline">
+            <span>Visible</span>
+            <input id="visibleInput" type="checkbox" checked />
+          </label>
+          <label class="field-inline">
+            <span>Key Color</span>
+            <input id="keyColorInput" type="color" value="#000000" />
+          </label>
+          <label class="field-inline">
+            <span>Tolerance</span>
+            <input id="toleranceInput" type="range" min="0" max="255" value="30" />
+            <output id="toleranceValue">30</output>
+          </label>
+          <div class="button-row">
+            <button id="moveLayerUpBtn" type="button">Move Up</button>
+            <button id="moveLayerDownBtn" type="button">Move Down</button>
+            <button id="deleteLayerBtn" type="button" class="danger">Delete</button>
+          </div>
+        </div>
+
+        <h2>Export</h2>
+        <div class="export-controls">
+          <button id="exportStillBtn" type="button">Export Still (PNG)</button>
+          <label class="field-inline">
+            <span>Sequence Frames</span>
+            <input id="sequenceFramesInput" type="number" min="1" step="1" value="1" />
+          </label>
+          <button id="exportSequenceBtn" type="button">Export PNG Sequence (ZIP)</button>
+        </div>
+      </section>
+    </div>
+
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
