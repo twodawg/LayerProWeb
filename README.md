@@ -27,3 +27,5 @@ No build step is required.
 
 - Folder import relies on `webkitdirectory` support.
 - Sequence ZIP export uses JSZip loaded from CDN.
+
+MIT License
