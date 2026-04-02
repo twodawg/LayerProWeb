@@ -2,6 +2,8 @@
 
 Single-page web app for compositing one background image with unlimited keyed overlay sequence folders.
 
+![Screen](LayerProWeb.jpg)
+
 ## Features
 
 - One background image upload.
